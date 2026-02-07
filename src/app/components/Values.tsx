@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 const values = [
   { icon: Shield, key: 'responsibility' },
-  { icon: MessageCircle, key: 'honesty' },
+  { icon: MessageCircle, key: 'integrity' },
   { icon: Users, key: 'respect' },
   { icon: Target, key: 'commitment' },
 ] as const;

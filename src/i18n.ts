@@ -20,19 +20,23 @@ const resources = {
         items: {
           responsibility: {
             title: 'Responsibility',
-            description: 'We take ownership of what we build and how it impacts people and businesses',
+            description:
+              'We take full responsibility for our actions, decisions, and deliveries. We stand by our commitments and ensure that we always deliver what we promise. Responsibility also means shared ownership of the company’s success and a strong focus on delivering the best possible solutions for our clients.',
           },
-          honesty: {
-            title: 'Honesty',
-            description: 'Transparent communication, realistic expectations, and long-term trust',
+          integrity: {
+            title: 'Integrity',
+            description:
+              'Transparency and honesty are the foundation of trust. We communicate openly and directly, both within the organization and with our clients. We believe in honest advice, clear feedback, and a work environment built on mutual trust and accountability.',
           },
           respect: {
             title: 'Respect',
-            description: 'Technology is built for humans — not the other way around',
+            description:
+              'We respect each other, our clients, and the work we do. We treat everyone with dignity and actively listen to different perspectives. Respect also means valuing people’s time, honoring our promises, and acknowledging the efforts of others.',
           },
           commitment: {
             title: 'Commitment',
-            description: 'We are fully engaged in every partnership and deliver work that truly matters',
+            description:
+              'We are passionate about what we do and always strive to go the extra mile. Our commitment drives us to find the best solutions for our clients and to support each other as a team. We take initiative, work proactively, and ensure that Omni Linx is a reliable partner that consistently delivers quality.',
           },
         },
       },
@@ -205,19 +209,23 @@ const resources = {
         items: {
           responsibility: {
             title: 'Responsabilité',
-            description: "Nous assumons ce que nous construisons et l’impact sur les personnes et les entreprises",
+            description:
+              'Nous assumons pleinement la responsabilité de nos actions, de nos décisions et de nos livraisons. Nous tenons nos engagements et nous veillons à toujours délivrer ce que nous promettons. La responsabilité, c’est aussi un esprit de co‑propriété du succès de l’entreprise et une forte exigence de qualité pour offrir les meilleures solutions à nos clients.',
           },
-          honesty: {
-            title: 'Transparence',
-            description: 'Une communication claire, des attentes réalistes et une confiance durable',
+          integrity: {
+            title: 'Intégrité',
+            description:
+              'La transparence et l’honnêteté sont la base de la confiance. Nous communiquons de manière ouverte et directe, en interne comme avec nos clients. Nous croyons aux conseils sincères, aux retours clairs et à un environnement de travail fondé sur la confiance mutuelle et la responsabilité.',
           },
           respect: {
             title: 'Respect',
-            description: "La technologie est faite pour l’humain — pas l’inverse",
+            description:
+              'Nous respectons nos collègues, nos clients et le travail que nous accomplissons. Nous traitons chacun avec dignité et nous écoutons activement les différents points de vue. Le respect, c’est aussi valoriser le temps des autres, tenir ses promesses et reconnaître les efforts de chacun.',
           },
           commitment: {
             title: 'Engagement',
-            description: 'Nous nous investissons pleinement et livrons un travail qui compte vraiment',
+            description:
+              'Nous sommes passionnés par ce que nous faisons et nous cherchons toujours à aller plus loin. Notre engagement nous pousse à trouver les meilleures solutions pour nos clients et à nous soutenir en équipe. Nous prenons des initiatives, agissons de manière proactive et faisons d’Omni Linx un partenaire fiable qui délivre une qualité constante.',
           },
         },
       },
@@ -392,19 +400,23 @@ const resources = {
         items: {
           responsibility: {
             title: 'المسؤولية',
-            description: 'نتحمل مسؤولية ما نبنيه وتأثيره على الناس والأعمال',
+            description:
+              'نتحمل المسؤولية الكاملة عن أفعالنا وقراراتنا وتسليماتنا. نلتزم بوعودنا ونتأكد دائماً من تقديم ما نعد به. وتعني المسؤولية أيضاً ملكية مشتركة لنجاح الشركة وتركيزاً قوياً على تقديم أفضل الحلول الممكنة لعملائنا.',
           },
-          honesty: {
-            title: 'الشفافية',
-            description: 'تواصل واضح وتوقعات واقعية وثقة طويلة الأمد',
+          integrity: {
+            title: 'النزاهة',
+            description:
+              'الشفافية والصدق هما أساس الثقة. نتواصل بوضوح وبشكل مباشر داخل المؤسسة ومع عملائنا. نؤمن بالنصيحة الصادقة، وبالتغذية الراجعة الواضحة، وببيئة عمل مبنية على الثقة المتبادلة والمساءلة.',
           },
           respect: {
             title: 'الاحترام',
-            description: 'التقنية صُممت للإنسان — وليس العكس',
+            description:
+              'نحترم بعضنا البعض، ونحترم عملاءنا، ونحترم العمل الذي نقوم به. نعامل الجميع بكرامة ونستمع باهتمام لوجهات النظر المختلفة. كما يعني الاحترام تقدير وقت الآخرين والوفاء بالوعود وتقدير جهود الجميع.',
           },
           commitment: {
             title: 'الالتزام',
-            description: 'نلتزم بالكامل في كل شراكة ونقدم عملاً يحدث فرقاً',
+            description:
+              'نحن شغوفون بما نقوم به ونسعى دائماً لبذل جهد إضافي. يدفعنا التزامنا إلى إيجاد أفضل الحلول لعملائنا ودعم بعضنا كفريق. نبادر ونعمل بشكل استباقي ونتأكد أن Omni Linx شريك موثوق يقدّم جودة ثابتة.',
           },
         },
       },
