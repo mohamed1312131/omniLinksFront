@@ -20,36 +20,39 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+        <div
+          // CACHED ANIMATIONS - Remove comments to restore:
+          // initial={{ opacity: 0, y: 30 }}
+          // animate={{ opacity: 1, y: 0 }}
+          // transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <motion.h1
+          <h1
             className="mb-6 bg-gradient-to-r from-[#39FF14] via-white to-[#1E9BFF] bg-clip-text text-transparent"
             style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', lineHeight: 1.1, fontWeight: 700 }}
           >
             Building Digital
             <br />
             Products That Last
-          </motion.h1>
+          </h1>
 
-          <motion.p
+          <p
             className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            // CACHED ANIMATIONS:
+            // initial={{ opacity: 0 }}
+            // animate={{ opacity: 1 }}
+            // transition={{ duration: 0.8, delay: 0.4 }}
           >
             We design and build digital products by connecting strategy, design, and technology 
             into scalable, long-term solutions. From concept to launch, we help businesses and 
             founders transform ideas into performant digital products — not just good-looking ones.
-          </motion.p>
+          </p>
 
-          <motion.div
+          <div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            // CACHED ANIMATIONS:
+            // initial={{ opacity: 0, y: 20 }}
+            // animate={{ opacity: 1, y: 0 }}
+            // transition={{ duration: 0.8, delay: 0.6 }}
           >
             <motion.button
               className="group px-8 py-4 rounded-full bg-gradient-to-r from-[#39FF14] to-[#1E9BFF] text-black flex items-center gap-2 hover:shadow-[0_0_40px_rgba(57,255,20,0.5)] transition-all duration-300"
@@ -69,15 +72,16 @@ export function Hero() {
             >
               Start a Conversation
             </motion.button>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Scroll Indicator */}
         <motion.div
           className="absolute bottom-10 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
+          // CACHED ANIMATIONS:
+          // initial={{ opacity: 0 }}
+          // animate={{ opacity: 1 }}
+          // transition={{ duration: 1, delay: 1 }}
         >
           <motion.div
             className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2"

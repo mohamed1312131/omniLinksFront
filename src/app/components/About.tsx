@@ -3,6 +3,8 @@ import { Target, Eye, Compass } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import omniMarketLogo from 'figma:asset/089d0c59ea97d542d6425bcc74497222f9b56651.png';
+import omniCareLogo from 'figma:asset/1c8626a24a7f1fd1d942519d971825008aed15fa.png';
+import omniSchoolLogo from 'figma:asset/cfc3575040f39d62c270fba77eea555896b704e8.png';
 
 export function About() {
   const navigate = useNavigate();
@@ -32,6 +34,24 @@ export function About() {
       gradientFrom: 'from-[#39FF14]/20',
       gradientTo: 'to-[#1E9BFF]/20',
       iconColor: 'text-[#39FF14]',
+    },
+  ];
+
+  const projects = [
+    {
+      logo: omniMarketLogo,
+      name: 'OmniMarket',
+      description: 'A cutting-edge digital marketplace platform connecting buyers and sellers in a seamless ecosystem',
+    },
+    {
+      logo: omniCareLogo,
+      name: 'OmniCare',
+      description: 'Comprehensive healthcare platform delivering personalized care and wellness solutions',
+    },
+    {
+      logo: omniSchoolLogo,
+      name: 'Omni School',
+      description: 'Modern education platform transforming learning through innovative digital solutions',
     },
   ];
 
@@ -117,26 +137,36 @@ export function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h3 className="mb-8 text-white/90" style={{ fontSize: '1.5rem', fontWeight: 600 }}>
-            Our Current Project
+          <h3 className="mb-12 text-white/90" style={{ fontSize: '1.5rem', fontWeight: 600 }}>
+            Our Current Projects
           </h3>
-          <motion.div
-            className="inline-block p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-sm hover:border-[#39FF14]/40 transition-all duration-300 cursor-pointer"
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: '0 0 40px rgba(57,255,20,0.2)'
-            }}
-            onClick={() => navigate('/contact')}
-          >
-            <img 
-              src={omniMarketLogo} 
-              alt="OmniMarket" 
-              className="h-24 w-auto mx-auto"
-            />
-          </motion.div>
-          <p className="mt-6 text-gray-400 text-sm max-w-2xl mx-auto">
-            A cutting-edge digital marketplace platform connecting buyers and sellers in a seamless ecosystem
-          </p>
+          
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.name}
+                className="p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-sm hover:border-[#39FF14]/40 transition-all duration-300 cursor-pointer"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: '0 0 40px rgba(57,255,20,0.2)'
+                }}
+                onClick={() => navigate('/contact')}
+              >
+                <img 
+                  src={project.logo} 
+                  alt={project.name} 
+                  className="h-24 w-auto mx-auto"
+                />
+                <p className="mt-6 text-gray-400 text-sm">
+                  {project.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

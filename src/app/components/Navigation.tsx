@@ -72,16 +72,25 @@ export function Navigation() {
 
           {/* Right Side Actions */}
           <div className="hidden md:flex items-center gap-4">
+            {/* CTA Button */}
+            <motion.button
+              className="px-6 py-2 rounded-full bg-black border-2 border-[#39FF14] text-[#39FF14] hover:bg-[#39FF14] hover:text-black transition-all duration-300 hover:shadow-[0_0_20px_rgba(57,255,20,0.4)]"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/contact')}
+            >
+              Contact Us
+            </motion.button>
+
             {/* Language Selector */}
             <div className="relative">
               <motion.button
-                className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-sm text-gray-300 hover:text-white hover:border-[#39FF14]/40 transition-all duration-300"
+                className="p-2 rounded-full border border-white/20 text-gray-300 hover:text-white hover:border-[#39FF14]/40 transition-all duration-300"
                 onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Languages className="w-4 h-4" />
-                <span>{selectedLanguage}</span>
+                <Languages className="w-5 h-5" />
               </motion.button>
 
               {/* Dropdown Menu */}
@@ -125,16 +134,6 @@ export function Navigation() {
                 )}
               </AnimatePresence>
             </div>
-
-            {/* CTA Button */}
-            <motion.button
-              className="px-6 py-2 rounded-full bg-black border-2 border-[#39FF14] text-[#39FF14] hover:bg-[#39FF14] hover:text-black transition-all duration-300 hover:shadow-[0_0_20px_rgba(57,255,20,0.4)]"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => navigate('/contact')}
-            >
-              Contact Us
-            </motion.button>
           </div>
         </div>
       </div>

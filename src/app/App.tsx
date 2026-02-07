@@ -17,8 +17,11 @@ export default function App() {
         {/* Cosmic Background with Particles */}
         <ParticleBackground />
 
-        {/* Radial Gradient Overlay */}
-        <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#39FF14]/10 via-transparent to-transparent pointer-events-none z-0" />
+        {/* Radial Gradient Overlay - Top (Green) */}
+        <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#39FF14]/20 via-transparent to-transparent pointer-events-none z-0" />
+
+        {/* Radial Gradient Overlay - Bottom (Blue) */}
+        <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-[#1E9BFF]/20 via-transparent to-transparent pointer-events-none z-0" />
 
         {/* Content */}
         <div className="relative z-10">
