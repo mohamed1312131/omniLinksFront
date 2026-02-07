@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Shield, MessageCircle, Users, Target } from 'lucide-react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const values = [
@@ -11,6 +12,7 @@ const values = [
 
 export function Values() {
   const { t } = useTranslation();
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
     <section id="what-we-do" className="relative py-24 px-6 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent">
@@ -39,12 +41,24 @@ export function Values() {
           {values.map((value, index) => (
             <motion.div
               key={value.key}
-              className="text-center"
+              className="relative text-center rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm overflow-hidden hover:border-[#39FF14]/40 hover:shadow-[0_0_30px_rgba(57,255,20,0.15)] transition-all duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -8 }}
+              onMouseEnter={() => setExpandedIndex(index)}
+              onMouseLeave={() => setExpandedIndex((current) => (current === index ? null : current))}
+              onClick={() =>
+                setExpandedIndex((current) => {
+                  if (current === index) return null;
+                  return index;
+                })
+              }
             >
+              <div className="absolute inset-0 bg-gradient-to-br from-[#39FF14]/0 to-[#1E9BFF]/0 hover:from-[#39FF14]/5 hover:to-[#1E9BFF]/5 transition-all duration-300" />
+
+              <div className="relative z-10 p-8">
               {/* Icon Container */}
               <motion.div
                 className="mb-6 mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-[#39FF14]/20 to-[#1E9BFF]/20 border border-[#39FF14]/20 flex items-center justify-center"
@@ -57,15 +71,30 @@ export function Values() {
                 <value.icon className="w-9 h-9 text-[#39FF14]" />
               </motion.div>
 
-              {/* Title */}
-              <h3 className="mb-3 text-white" style={{ fontSize: '1.25rem', fontWeight: 600 }}>
-                {t(`values.items.${value.key}.title`)}
-              </h3>
+                {/* Title */}
+                <h3 className="mb-3 text-white" style={{ fontSize: '1.25rem', fontWeight: 600 }}>
+                  {t(`values.items.${value.key}.title`)}
+                </h3>
 
-              {/* Description */}
-              <p className="text-gray-400 text-sm leading-relaxed">
-                {t(`values.items.${value.key}.description`)}
-              </p>
+                {/* Description */}
+                <motion.div
+                  className="text-gray-400 text-sm leading-relaxed"
+                  initial={false}
+                  animate={expandedIndex === index ? 'open' : 'collapsed'}
+                  variants={{
+                    collapsed: { maxHeight: 56, opacity: 0.85 },
+                    open: { maxHeight: 260, opacity: 1 },
+                  }}
+                  transition={{ duration: 0.25 }}
+                  style={{ overflow: 'hidden' }}
+                >
+                  {t(`values.items.${value.key}.description`)}
+                </motion.div>
+
+                <div className="mt-3 text-xs text-white/40 select-none">
+                  {expandedIndex === index ? t('common.tapToCollapse') : t('common.tapToReadMore')}
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>

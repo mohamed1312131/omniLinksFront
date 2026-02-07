@@ -40,6 +40,10 @@ const resources = {
           },
         },
       },
+      common: {
+        tapToReadMore: 'Tap to read more',
+        tapToCollapse: 'Tap to collapse',
+      },
       sections: {
         platforms: {
           heading: 'Our Core Capabilities',
@@ -228,6 +232,10 @@ const resources = {
               'Nous sommes passionnés par ce que nous faisons et nous cherchons toujours à aller plus loin. Notre engagement nous pousse à trouver les meilleures solutions pour nos clients et à nous soutenir en équipe. Nous prenons des initiatives, agissons de manière proactive et faisons d’Omni Linx un partenaire fiable qui délivre une qualité constante.',
           },
         },
+      },
+      common: {
+        tapToReadMore: 'Appuyez pour en savoir plus',
+        tapToCollapse: 'Appuyez pour réduire',
       },
       sections: {
         platforms: {
@@ -419,6 +427,10 @@ const resources = {
               'نحن شغوفون بما نقوم به ونسعى دائماً لبذل جهد إضافي. يدفعنا التزامنا إلى إيجاد أفضل الحلول لعملائنا ودعم بعضنا كفريق. نبادر ونعمل بشكل استباقي ونتأكد أن Omni Linx شريك موثوق يقدّم جودة ثابتة.',
           },
         },
+      },
+      common: {
+        tapToReadMore: 'اضغط لقراءة المزيد',
+        tapToCollapse: 'اضغط للإغلاق',
       },
       sections: {
         platforms: {
