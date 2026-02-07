@@ -16,7 +16,8 @@ const resources = {
       },
       values: {
         heading: 'Our Core Values',
-        subheading: 'The principles that guide every partnership and venture we build',
+        subheading:
+          'Our core values are the heart of Omni Linx. They guide everything we do — internally and externally — shaping our culture, our decisions, and how we treat both colleagues and clients.',
         items: {
           responsibility: {
             title: 'Responsibility',
@@ -209,7 +210,8 @@ const resources = {
       },
       values: {
         heading: 'Nos valeurs',
-        subheading: 'Les principes qui guident chaque partenariat et chaque projet',
+        subheading:
+          'Nos valeurs fondamentales sont le cœur d’Omni Linx. Elles guident tout ce que nous faisons — en interne comme en externe — et façonnent notre culture, nos décisions et la manière dont nous traitons nos collègues et nos clients.',
         items: {
           responsibility: {
             title: 'Responsabilité',
@@ -404,7 +406,8 @@ const resources = {
       },
       values: {
         heading: 'قيمنا الأساسية',
-        subheading: 'المبادئ التي توجه كل شراكة وكل مشروع نبنيه',
+        subheading:
+          'قيمنا الأساسية هي قلب Omni Linx. إنها توجه كل ما نقوم به — داخلياً وخارجياً — وتشكل ثقافتنا وقراراتنا والطريقة التي نتعامل بها مع زملائنا وعملائنا.',
         items: {
           responsibility: {
             title: 'المسؤولية',
