@@ -17,7 +17,7 @@ const resources = {
       values: {
         heading: 'Our Core Values',
         subheading:
-          'Our core values are the heart of Omni Linx. They guide everything we do — internally and externally — shaping our culture, our decisions, and how we treat both colleagues and clients.',
+          'Our core values are the heart of Omni Links. They guide everything we do — internally and externally — shaping our culture, our decisions, and how we treat both colleagues and clients.',
         items: {
           responsibility: {
             title: 'Responsibility',
