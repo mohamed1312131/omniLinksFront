@@ -1,33 +1,17 @@
 import { motion } from 'motion/react';
 import { Network, Cpu, Globe, TrendingUp } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const platforms = [
-  {
-    icon: Network,
-    title: 'Digital Platforms & Ecosystems',
-    description: 'We build connected digital platforms designed for automation, scalability, and long-term value — not isolated tools.',
-  },
-  {
-    icon: Cpu,
-    title: 'AI & Automation',
-    description: 'We integrate intelligent automation and AI to optimize workflows, decision-making, and user experiences.',
-  },
-  {
-    icon: Globe,
-    title: 'Communication & Telecom Solutions',
-    description: 'We design modern communication infrastructures that enable secure, seamless, and global connectivity.',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Strategy, Growth & Advisory',
-    description: 'We help founders and organizations turn ideas into structured, scalable, and investable ventures through strategic guidance, growth planning, and long-term advisory.',
-  },
-];
+  { icon: Network, key: 'digitalPlatforms' },
+  { icon: Cpu, key: 'aiAutomation' },
+  { icon: Globe, key: 'telecom' },
+  { icon: TrendingUp, key: 'strategy' },
+] as const;
 
 export function Platforms() {
-  const navigate = useNavigate();
+  const { t } = useTranslation();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -45,10 +29,10 @@ export function Platforms() {
             className="mb-4 bg-gradient-to-r from-[#39FF14] to-[#1E9BFF] bg-clip-text text-transparent"
             style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.2, fontWeight: 700 }}
           >
-            Our Core Capabilities
+            {t('sections.platforms.heading')}
           </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            We create modern, secure, and scalable digital solutions built for growth
+            {t('sections.platforms.subheading')}
           </p>
         </motion.div>
 
@@ -56,8 +40,8 @@ export function Platforms() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {platforms.map((platform, index) => (
             <motion.div
-              key={platform.title}
-              className="relative rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-sm cursor-pointer overflow-hidden hover:border-[#39FF14]/40 hover:shadow-[0_0_30px_rgba(57,255,20,0.15)] transition-all duration-300"
+              key={platform.key}
+              className="relative rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-sm overflow-hidden hover:border-[#39FF14]/40 hover:shadow-[0_0_30px_rgba(57,255,20,0.15)] transition-all duration-300"
               style={{ minHeight: '200px' }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -66,7 +50,6 @@ export function Platforms() {
               whileHover={{ 
                 y: -8
               }}
-              onClick={() => navigate('/contact')}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
@@ -82,7 +65,7 @@ export function Platforms() {
 
                 {/* Title */}
                 <h3 className="text-white transition-all duration-300" style={{ fontSize: '1.5rem', fontWeight: 600 }}>
-                  {platform.title}
+                  {t(`sections.platforms.items.${platform.key}.title`)}
                 </h3>
 
                 {/* Description - Hidden by default, visible on hover */}
@@ -96,7 +79,7 @@ export function Platforms() {
                   transition={{ duration: 0.4, ease: 'easeInOut' }}
                 >
                   <p className="text-gray-400 leading-relaxed">
-                    {platform.description}
+                    {t(`sections.platforms.items.${platform.key}.description`)}
                   </p>
                 </motion.div>
               </div>

@@ -1,34 +1,17 @@
 import { motion } from 'motion/react';
 import { Search, Pencil, Code, Rocket } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const steps = [
-  {
-    icon: Search,
-    number: '01',
-    title: 'Discover',
-    description: 'Understanding vision, challenges, and long-term goals.',
-  },
-  {
-    icon: Pencil,
-    number: '02',
-    title: 'Design',
-    description: 'Structuring platforms, systems, and user experiences.',
-  },
-  {
-    icon: Code,
-    number: '03',
-    title: 'Build',
-    description: 'Developing, integrating, and testing reliable solutions.',
-  },
-  {
-    icon: Rocket,
-    number: '04',
-    title: 'Scale',
-    description: 'Optimizing, automating, and expanding for sustainable growth.',
-  },
-];
+  { icon: Search, number: '01', key: 'discover' },
+  { icon: Pencil, number: '02', key: 'design' },
+  { icon: Code, number: '03', key: 'build' },
+  { icon: Rocket, number: '04', key: 'scale' },
+] as const;
 
 export function HowWeWork() {
+  const { t } = useTranslation();
+
   return (
     <section id="how-we-work" className="relative py-24 px-6 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent">
       <div className="max-w-7xl mx-auto">
@@ -44,7 +27,7 @@ export function HowWeWork() {
             className="mb-4 bg-gradient-to-r from-[#39FF14] to-[#1E9BFF] bg-clip-text text-transparent"
             style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.2, fontWeight: 700 }}
           >
-            How We Work
+            {t('sections.howWeWork.heading')}
           </h2>
         </motion.div>
 
@@ -52,7 +35,7 @@ export function HowWeWork() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
             <motion.div
-              key={step.title}
+              key={step.key}
               className="relative"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -84,12 +67,12 @@ export function HowWeWork() {
 
                 {/* Title */}
                 <h3 className="mb-3 text-white" style={{ fontSize: '1.5rem', fontWeight: 600 }}>
-                  {step.title}
+                  {t(`sections.howWeWork.steps.${step.key}.title`)}
                 </h3>
 
                 {/* Description */}
                 <p className="text-gray-400 leading-relaxed">
-                  {step.description}
+                  {t(`sections.howWeWork.steps.${step.key}.description`)}
                 </p>
               </div>
             </motion.div>

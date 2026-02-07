@@ -1,26 +1,17 @@
 import { motion } from 'motion/react';
 import { Wifi, Building2, Printer, Wrench } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const services = [
-  {
-    icon: Wifi,
-    title: 'Connectivity & IT setup',
-  },
-  {
-    icon: Building2,
-    title: 'Office & business infrastructure',
-  },
-  {
-    icon: Printer,
-    title: 'Printing & hardware solutions',
-  },
-  {
-    icon: Wrench,
-    title: 'Ongoing technical support',
-  },
-];
+  { icon: Wifi, key: 'connectivity' },
+  { icon: Building2, key: 'office' },
+  { icon: Printer, key: 'printing' },
+  { icon: Wrench, key: 'support' },
+] as const;
 
 export function SupportingServices() {
+  const { t } = useTranslation();
+
   return (
     <section id="supporting-services" className="relative py-24 px-6">
       <div className="max-w-6xl mx-auto">
@@ -36,11 +27,10 @@ export function SupportingServices() {
             className="mb-4 bg-gradient-to-r from-[#39FF14] to-[#1E9BFF] bg-clip-text text-transparent"
             style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.2, fontWeight: 700 }}
           >
-            Supporting Services
+            {t('sections.supportingServices.heading')}
           </h2>
           <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-            In addition to our core digital offerings, we provide essential technical services 
-            that ensure stable and efficient day-to-day operations.
+            {t('sections.supportingServices.description')}
           </p>
         </motion.div>
 
@@ -48,7 +38,7 @@ export function SupportingServices() {
         <div className="grid md:grid-cols-2 gap-6">
           {services.map((service, index) => (
             <motion.div
-              key={service.title}
+              key={service.key}
               className="group flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-sm hover:border-[#39FF14]/40 transition-all duration-300"
               initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -64,7 +54,7 @@ export function SupportingServices() {
               {/* Title */}
               <div className="flex-1 pt-1">
                 <h3 className="text-white text-lg leading-relaxed">
-                  {service.title}
+                  {t(`sections.supportingServices.items.${service.key}`)}
                 </h3>
               </div>
             </motion.div>

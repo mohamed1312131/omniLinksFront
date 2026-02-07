@@ -2,58 +2,63 @@ import { motion } from 'motion/react';
 import { Target, Eye, Compass } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import omniMarketLogo from 'figma:asset/089d0c59ea97d542d6425bcc74497222f9b56651.png';
-import omniCareLogo from 'figma:asset/1c8626a24a7f1fd1d942519d971825008aed15fa.png';
-import omniSchoolLogo from 'figma:asset/cfc3575040f39d62c270fba77eea555896b704e8.png';
+import { useTranslation } from 'react-i18next';
+import omniMarketLogo from '@/assets/089d0c59ea97d542d6425bcc74497222f9b56651.png';
+import omniCareLogo from '@/assets/1c8626a24a7f1fd1d942519d971825008aed15fa.png';
+import omniSchoolLogo from '@/assets/cfc3575040f39d62c270fba77eea555896b704e8.png';
 
 export function About() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const sections = [
     {
       icon: Target,
-      title: 'Our Story',
-      description: 'Omni Links was founded on a simple belief: technology should simplify life — not complicate it. We help organizations move away from fragmented systems and short-term solutions by building connected digital ecosystems designed for clarity, scalability, and real impact.',
+      key: 'story',
+      title: t('sections.about.cards.story.title'),
+      description: t('sections.about.cards.story.description'),
       gradientFrom: 'from-[#39FF14]/20',
       gradientTo: 'to-[#1E9BFF]/20',
       iconColor: 'text-[#39FF14]',
     },
     {
       icon: Eye,
-      title: 'Our Vision',
-      description: 'Our vision is to build and support digital ventures that create real value across borders, industries, and generations — shaping a more efficient and human-centered digital future.',
+      key: 'vision',
+      title: t('sections.about.cards.vision.title'),
+      description: t('sections.about.cards.vision.description'),
       gradientFrom: 'from-[#1E9BFF]/20',
       gradientTo: 'to-[#39FF14]/20',
       iconColor: 'text-[#1E9BFF]',
     },
     {
       icon: Compass,
-      title: 'Our Mission',
-      description: 'We build digital ventures by connecting technology, people, and long-term thinking — where innovation is driven by purpose, not short-term gains. This is what we call Tech with Soul.',
+      key: 'mission',
+      title: t('sections.about.cards.mission.title'),
+      description: t('sections.about.cards.mission.description'),
       gradientFrom: 'from-[#39FF14]/20',
       gradientTo: 'to-[#1E9BFF]/20',
       iconColor: 'text-[#39FF14]',
     },
-  ];
+  ] as const;
 
   const projects = [
     {
       logo: omniMarketLogo,
       name: 'OmniMarket',
-      description: 'A cutting-edge digital marketplace platform connecting buyers and sellers in a seamless ecosystem',
+      descriptionKey: 'omniMarket',
     },
     {
       logo: omniCareLogo,
       name: 'OmniCare',
-      description: 'Comprehensive healthcare platform delivering personalized care and wellness solutions',
+      descriptionKey: 'omniCare',
     },
     {
       logo: omniSchoolLogo,
       name: 'Omni School',
-      description: 'Modern education platform transforming learning through innovative digital solutions',
+      descriptionKey: 'omniSchool',
     },
-  ];
+  ] as const;
 
   return (
     <section id="about" className="relative py-24 px-6">
@@ -70,10 +75,10 @@ export function About() {
             className="mb-4 bg-gradient-to-r from-[#39FF14] to-[#1E9BFF] bg-clip-text text-transparent"
             style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.2, fontWeight: 700 }}
           >
-            About Omni Links
+            {t('sections.about.heading')}
           </h2>
           <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-            We build digital ventures by connecting technology, people, and long-term thinking
+            {t('sections.about.subheading')}
           </p>
         </motion.div>
 
@@ -81,7 +86,7 @@ export function About() {
         <div className="grid md:grid-cols-3 gap-8">
           {sections.map((section, index) => (
             <motion.div
-              key={section.title}
+              key={section.key}
               className="relative rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-sm cursor-pointer overflow-hidden hover:border-[#39FF14]/40 hover:shadow-[0_0_30px_rgba(57,255,20,0.15)] transition-all duration-300"
               style={{ minHeight: '280px' }}
               initial={{ opacity: 0, y: 30 }}
@@ -106,7 +111,7 @@ export function About() {
 
                 {/* Title */}
                 <h3 className="text-white transition-all duration-300" style={{ fontSize: '1.75rem', fontWeight: 600 }}>
-                  {section.title}
+                  {t(`sections.about.cards.${section.key}.title`)}
                 </h3>
 
                 {/* Description - Hidden by default, visible on hover */}
@@ -120,7 +125,7 @@ export function About() {
                   transition={{ duration: 0.4, ease: 'easeInOut' }}
                 >
                   <p className="text-gray-400 leading-relaxed text-lg">
-                    {section.description}
+                    {t(`sections.about.cards.${section.key}.description`)}
                   </p>
                 </motion.div>
               </div>
@@ -138,7 +143,7 @@ export function About() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <h3 className="mb-12 text-white/90" style={{ fontSize: '1.5rem', fontWeight: 600 }}>
-            Our Current Projects
+            {t('sections.about.projectsHeading')}
           </h3>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -162,7 +167,7 @@ export function About() {
                   className="h-24 w-auto mx-auto"
                 />
                 <p className="mt-6 text-gray-400 text-sm">
-                  {project.description}
+                  {t(`sections.about.projects.${project.descriptionKey}`)}
                 </p>
               </motion.div>
             ))}

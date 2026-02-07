@@ -1,8 +1,10 @@
 import { motion } from 'motion/react';
 import { Handshake } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export function Partners() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
@@ -17,7 +19,7 @@ export function Partners() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Partners
+            {t('pages.partners.title')}
           </motion.h1>
         </div>
       </section>
@@ -41,11 +43,10 @@ export function Partners() {
               className="mb-6 bg-gradient-to-r from-[#39FF14] to-[#1E9BFF] bg-clip-text text-transparent"
               style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', lineHeight: 1.2, fontWeight: 700 }}
             >
-              Building Strategic Partnerships
+              {t('pages.partners.heading')}
             </h2>
             <p className="text-lg text-gray-400 leading-relaxed mb-8 max-w-2xl mx-auto">
-              We collaborate with forward-thinking organizations to create innovative digital solutions. 
-              If you're interested in partnering with Omni Links, we'd love to hear from you.
+              {t('pages.partners.text')}
             </p>
             <motion.button
               className="px-8 py-4 rounded-full bg-gradient-to-r from-[#39FF14] to-[#1E9BFF] text-black flex items-center gap-2 mx-auto hover:shadow-[0_0_40px_rgba(57,255,20,0.5)] transition-all duration-300"
@@ -53,7 +54,7 @@ export function Partners() {
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/contact')}
             >
-              Get in Touch
+              {t('pages.partners.button')}
             </motion.button>
           </motion.div>
         </div>

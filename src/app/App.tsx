@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ParticleBackground } from '@/app/components/ParticleBackground';
 import { Navigation } from '@/app/components/Navigation';
 import { Footer } from '@/app/components/Footer';
@@ -9,8 +11,28 @@ import { AboutPage } from '@/app/pages/AboutPage';
 import { Partners } from '@/app/pages/Partners';
 import { Contact } from '@/app/pages/Contact';
 import { AdminDashboard } from '@/app/pages/AdminDashboard';
+import { AdminLogin } from '@/app/pages/AdminLogin';
+import { ProtectedRoute } from '@/app/components/ProtectedRoute';
 
 export default function App() {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    const lang = i18n.language || 'en';
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  }, [i18n.language]);
+
+  useEffect(() => {
+    const key = 'omnilinks_visit_tracked';
+    if (sessionStorage.getItem(key)) return;
+
+    sessionStorage.setItem(key, '1');
+    fetch('/api/analytics/track').catch(() => {
+      sessionStorage.removeItem(key);
+    });
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="relative min-h-screen bg-black overflow-x-hidden">
@@ -33,7 +55,15 @@ export default function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/admindashboard" element={<AdminDashboard />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route
+              path="/admindashboard"
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
           <Footer />
         </div>

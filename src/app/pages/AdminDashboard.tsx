@@ -1,99 +1,122 @@
 import { motion } from 'motion/react';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Users, Mail, CheckCircle, Clock, Trash2 } from 'lucide-react';
+import { apiRequest } from '@/app/utils/auth';
 
-// Mock data for website visitors
-const visitorData = [
-  { month: 'Jan', visitors: 1200 },
-  { month: 'Feb', visitors: 1800 },
-  { month: 'Mar', visitors: 2400 },
-  { month: 'Apr', visitors: 2100 },
-  { month: 'May', visitors: 2800 },
-  { month: 'Jun', visitors: 3200 },
-  { month: 'Jul', visitors: 3600 },
-  { month: 'Aug', visitors: 3100 },
-  { month: 'Sep', visitors: 3800 },
-  { month: 'Oct', visitors: 4200 },
-  { month: 'Nov', visitors: 4500 },
-  { month: 'Dec', visitors: 5000 },
-];
+type DashboardRequest = {
+  id: number;
+  name: string;
+  email: string;
+  message: string;
+  date: string;
+  status: 'pending' | 'handled';
+  created_at?: string;
+};
 
-// Mock data for requests per month
-const requestData = [
-  { month: 'Jan', requests: 12 },
-  { month: 'Feb', requests: 18 },
-  { month: 'Mar', requests: 24 },
-  { month: 'Apr', requests: 21 },
-  { month: 'May', requests: 28 },
-  { month: 'Jun', requests: 32 },
-  { month: 'Jul', requests: 36 },
-  { month: 'Aug', requests: 31 },
-  { month: 'Sep', requests: 38 },
-  { month: 'Oct', requests: 42 },
-  { month: 'Nov', requests: 45 },
-  { month: 'Dec', requests: 50 },
-];
+type AnalyticsResponse = {
+  success: boolean;
+  data: {
+    visitorData: Array<{ month: string; visitors: string | number }>;
+    requestData: Array<{ month: string; requests: string | number }>;
+    stats: {
+      total_visitors: string | number;
+      pending_requests: string | number;
+      handled_requests: string | number;
+      total_requests: string | number;
+    };
+  };
+};
 
-// Mock contact requests
-const initialRequests = [
-  {
-    id: 1,
-    name: 'John Smith',
-    email: 'john.smith@example.com',
-    message: 'Interested in building a custom e-commerce platform.',
-    date: '2026-02-01',
-    status: 'pending',
-  },
-  {
-    id: 2,
-    name: 'Sarah Johnson',
-    email: 'sarah.j@company.com',
-    message: 'Looking for a team to develop our mobile app.',
-    date: '2026-02-02',
-    status: 'pending',
-  },
-  {
-    id: 3,
-    name: 'Michael Chen',
-    email: 'mchen@tech.io',
-    message: 'Need consultation on digital transformation strategy.',
-    date: '2026-02-03',
-    status: 'handled',
-  },
-  {
-    id: 4,
-    name: 'Emily Davis',
-    email: 'emily.davis@startup.com',
-    message: 'Want to discuss partnership opportunities.',
-    date: '2026-02-04',
-    status: 'pending',
-  },
-  {
-    id: 5,
-    name: 'Robert Williams',
-    email: 'rwilliams@enterprise.com',
-    message: 'Requesting a quote for enterprise solution.',
-    date: '2026-02-05',
-    status: 'handled',
-  },
-];
+type RequestsResponse = {
+  success: boolean;
+  data: DashboardRequest[];
+};
 
 export function AdminDashboard() {
-  const [requests, setRequests] = useState(initialRequests);
+  const [requests, setRequests] = useState<DashboardRequest[]>([]);
+  const [visitorData, setVisitorData] = useState<Array<{ month: string; visitors: number }>>([]);
+  const [requestData, setRequestData] = useState<Array<{ month: string; requests: number }>>([]);
+  const [totalVisitors, setTotalVisitors] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleStatusChange = (id: number, newStatus: 'pending' | 'handled') => {
-    setRequests(requests.map(req => 
-      req.id === id ? { ...req, status: newStatus } : req
-    ));
+  useEffect(() => {
+    let isMounted = true;
+
+    async function load() {
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const [analytics, reqs] = await Promise.all([
+          apiRequest<AnalyticsResponse>('/api/analytics'),
+          apiRequest<RequestsResponse>('/api/requests'),
+        ]);
+
+        if (!isMounted) return;
+
+        setVisitorData(
+          (analytics.data.visitorData || []).map((row) => ({
+            month: row.month,
+            visitors: Number(row.visitors) || 0,
+          }))
+        );
+
+        setRequestData(
+          (analytics.data.requestData || []).map((row) => ({
+            month: row.month,
+            requests: Number(row.requests) || 0,
+          }))
+        );
+
+        setTotalVisitors(Number(analytics.data.stats?.total_visitors) || 0);
+        setRequests(reqs.data || []);
+      } catch (err) {
+        if (!isMounted) return;
+        setError(err instanceof Error ? err.message : 'Failed to load dashboard');
+      } finally {
+        if (isMounted) setIsLoading(false);
+      }
+    }
+
+    load();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const handleStatusChange = async (id: number, newStatus: 'pending' | 'handled') => {
+    setRequests((prev) => prev.map((req) => (req.id === id ? { ...req, status: newStatus } : req)));
+
+    try {
+      await apiRequest('/api/requests/' + id + '/status', {
+        method: 'PATCH',
+        body: JSON.stringify({ status: newStatus }),
+      });
+    } catch (err) {
+      setRequests((prev) => prev.map((req) => (req.id === id ? { ...req, status: newStatus === 'pending' ? 'handled' : 'pending' } : req)));
+      setError(err instanceof Error ? err.message : 'Failed to update status');
+    }
   };
 
-  const handleDelete = (id: number) => {
-    setRequests(requests.filter(req => req.id !== id));
+  const handleDelete = async (id: number) => {
+    const previous = requests;
+    setRequests((prev) => prev.filter((req) => req.id !== id));
+
+    try {
+      await apiRequest('/api/requests/' + id, {
+        method: 'DELETE',
+      });
+    } catch (err) {
+      setRequests(previous);
+      setError(err instanceof Error ? err.message : 'Failed to delete request');
+    }
   };
 
-  const pendingCount = requests.filter(r => r.status === 'pending').length;
-  const handledCount = requests.filter(r => r.status === 'handled').length;
+  const pendingCount = useMemo(() => requests.filter((r) => r.status === 'pending').length, [requests]);
+  const handledCount = useMemo(() => requests.filter((r) => r.status === 'handled').length, [requests]);
 
   return (
     <div className="min-h-screen pt-32 pb-16 px-6">
@@ -115,6 +138,12 @@ export function AdminDashboard() {
             Monitor website analytics and manage contact requests
           </p>
         </motion.div>
+ 
+        {error && (
+          <div className="mb-8 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200">
+            {error}
+          </div>
+        )}
 
         {/* Stats Cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
@@ -130,7 +159,7 @@ export function AdminDashboard() {
                 <Users className="w-6 h-6 text-[#39FF14]" />
               </div>
             </div>
-            <p className="text-4xl font-bold text-white mb-2">38,800</p>
+            <p className="text-4xl font-bold text-white mb-2">{isLoading ? '—' : totalVisitors.toLocaleString()}</p>
             <p className="text-sm text-gray-500">+12% from last year</p>
           </motion.div>
 

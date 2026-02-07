@@ -1,18 +1,17 @@
 import { motion } from 'motion/react';
-import { Mail, Linkedin, Twitter, MapPin, Phone, FileText } from 'lucide-react';
+import { Mail, Linkedin, Facebook, Instagram, MapPin, Phone, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import logo from 'figma:asset/3b116380632049ae9483c80ba65c02f33bf5b032.png';
+import { useTranslation } from 'react-i18next';
+import logo from '@/assets/3b116380632049ae9483c80ba65c02f33bf5b032.png';
 
 export function Footer() {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'What We Do', path: '/what-we-do' },
-    { label: 'Platforms', path: '/admindashboard' },
-    { label: 'About', path: '/about' },
-    { label: 'Partners', path: '/partners' },
-    { label: 'Contact', path: '/contact' },
+    { label: t('nav.home'), path: '/' },
+    { label: t('nav.about'), path: '/about' },
+    { label: t('nav.contactUs'), path: '/contact' },
   ];
 
   return (
@@ -31,7 +30,7 @@ export function Footer() {
               <span className="text-xl text-white font-bold">OmniLinks</span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
-              Ready to build something meaningful? Start a conversation with OmniLinks.
+              {t('footer.tagline')}
             </p>
           </motion.div>
 
@@ -43,7 +42,7 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <h4 className="text-white mb-4" style={{ fontSize: '1.125rem', fontWeight: 600 }}>
-              Quick Links
+              {t('footer.quickLinks')}
             </h4>
             <ul className="space-y-2">
               {quickLinks.map((item) => (
@@ -67,7 +66,7 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h4 className="text-white mb-4" style={{ fontSize: '1.125rem', fontWeight: 600 }}>
-              Contact Info
+              {t('footer.contactInfo')}
             </h4>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
@@ -102,10 +101,10 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <h4 className="text-white mb-4" style={{ fontSize: '1.125rem', fontWeight: 600 }}>
-              Connect With Us
+              {t('footer.connectWithUs')}
             </h4>
             <p className="text-white/60 text-sm mb-4">
-              Follow us on social media
+              {t('footer.followUs')}
             </p>
             <div className="flex gap-4">
               <motion.a
@@ -113,21 +112,28 @@ export function Footer() {
                 className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-[#39FF14]/40 transition-all"
                 whileHover={{ scale: 1.1, boxShadow: '0 0 20px rgba(57,255,20,0.3)' }}
               >
-                <Mail className="w-4 h-4 text-white/80" />
+                <Facebook className="w-4 h-4 text-[#1877F2]" />
               </motion.a>
               <motion.a
                 href="#"
                 className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-[#39FF14]/40 transition-all"
                 whileHover={{ scale: 1.1, boxShadow: '0 0 20px rgba(57,255,20,0.3)' }}
               >
-                <Linkedin className="w-4 h-4 text-white/80" />
+                <Instagram className="w-4 h-4 text-[#E4405F]" />
               </motion.a>
               <motion.a
                 href="#"
                 className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-[#39FF14]/40 transition-all"
                 whileHover={{ scale: 1.1, boxShadow: '0 0 20px rgba(57,255,20,0.3)' }}
               >
-                <Twitter className="w-4 h-4 text-white/80" />
+                <Linkedin className="w-4 h-4 text-[#0A66C2]" />
+              </motion.a>
+              <motion.a
+                href="#"
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-[#39FF14]/40 transition-all"
+                whileHover={{ scale: 1.1, boxShadow: '0 0 20px rgba(57,255,20,0.3)' }}
+              >
+                <Mail className="w-4 h-4 text-[#39FF14]" />
               </motion.a>
             </div>
           </motion.div>
@@ -142,17 +148,17 @@ export function Footer() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p className="text-white/50 text-sm">
-            © {currentYear} Omni Links. All rights reserved.
+            © {currentYear} Omni Links. {t('footer.rights')}
           </p>
           <div className="flex gap-6 text-sm">
             <a href="#" className="text-white/50 hover:text-white transition-colors">
-              Privacy Policy
+              {t('footer.privacyPolicy')}
             </a>
             <a href="#" className="text-white/50 hover:text-white transition-colors">
-              Terms of Service
+              {t('footer.terms')}
             </a>
             <a href="#" className="text-white/50 hover:text-white transition-colors">
-              Legal
+              {t('footer.legal')}
             </a>
           </div>
         </motion.div>

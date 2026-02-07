@@ -3,8 +3,10 @@ import { Platforms } from '@/app/components/Platforms';
 import { HowWeWork } from '@/app/components/HowWeWork';
 import { SupportingServices } from '@/app/components/SupportingServices';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export function WhatWeDo() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
@@ -19,7 +21,7 @@ export function WhatWeDo() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            What We Do
+            {t('pages.whatWeDo.title')}
           </motion.h1>
           <motion.p
             className="text-xl text-gray-400 max-w-3xl mx-auto"
@@ -27,7 +29,7 @@ export function WhatWeDo() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            We create modern, secure, and scalable digital solutions built for growth
+            {t('pages.whatWeDo.subtitle')}
           </motion.p>
         </div>
       </section>
@@ -52,10 +54,10 @@ export function WhatWeDo() {
               className="mb-6 bg-gradient-to-r from-[#39FF14] to-[#1E9BFF] bg-clip-text text-transparent"
               style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', lineHeight: 1.2, fontWeight: 700 }}
             >
-              Ready to build something meaningful?
+              {t('pages.whatWeDo.ctaTitle')}
             </h2>
             <p className="text-lg text-gray-400 mb-8 leading-relaxed">
-              Start a conversation with Omni Links.
+              {t('pages.whatWeDo.ctaText')}
             </p>
             <motion.button
               className="px-8 py-4 rounded-full bg-gradient-to-r from-[#39FF14] to-[#1E9BFF] text-black flex items-center gap-2 mx-auto hover:shadow-[0_0_40px_rgba(57,255,20,0.5)] transition-all duration-300"
@@ -63,7 +65,7 @@ export function WhatWeDo() {
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/contact')}
             >
-              Get Started
+              {t('pages.whatWeDo.ctaButton')}
             </motion.button>
           </motion.div>
         </div>

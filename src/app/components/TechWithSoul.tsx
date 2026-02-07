@@ -1,7 +1,10 @@
 import { motion } from 'motion/react';
 import { Heart } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function TechWithSoul() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative py-24 px-6">
       <div className="max-w-4xl mx-auto">
@@ -29,16 +32,12 @@ export function TechWithSoul() {
             className="mb-6 bg-gradient-to-r from-[#39FF14] to-[#1E9BFF] bg-clip-text text-transparent"
             style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1.2, fontWeight: 700 }}
           >
-            Tech with Soul
+            {t('sections.techWithSoul.heading')}
           </h2>
 
           {/* Description */}
-          <p className="text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto">
-            At Omni Links, technology is not just about code or systems — it's about people.
-            <br />
-            <br />
-            We combine technical expertise with human insight to create ethical, sustainable, 
-            and long-lasting digital solutions.
+          <p className="text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto whitespace-pre-line">
+            {t('sections.techWithSoul.description')}
           </p>
         </motion.div>
       </div>

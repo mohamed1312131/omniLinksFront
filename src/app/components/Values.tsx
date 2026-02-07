@@ -1,30 +1,17 @@
 import { motion } from 'motion/react';
 import { Shield, MessageCircle, Users, Target } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const values = [
-  {
-    icon: Shield,
-    title: 'Responsibility',
-    description: 'We take ownership of what we build and how it impacts people and businesses',
-  },
-  {
-    icon: MessageCircle,
-    title: 'Honesty',
-    description: 'Transparent communication, realistic expectations, and long-term trust',
-  },
-  {
-    icon: Users,
-    title: 'Respect',
-    description: 'Technology is built for humans — not the other way around',
-  },
-  {
-    icon: Target,
-    title: 'Commitment',
-    description: 'We are fully engaged in every partnership and deliver work that truly matters',
-  },
-];
+  { icon: Shield, key: 'responsibility' },
+  { icon: MessageCircle, key: 'honesty' },
+  { icon: Users, key: 'respect' },
+  { icon: Target, key: 'commitment' },
+] as const;
 
 export function Values() {
+  const { t } = useTranslation();
+
   return (
     <section id="what-we-do" className="relative py-24 px-6 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent">
       <div className="max-w-7xl mx-auto">
@@ -40,10 +27,10 @@ export function Values() {
             className="mb-4 bg-gradient-to-r from-[#39FF14] to-[#1E9BFF] bg-clip-text text-transparent"
             style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.2, fontWeight: 700 }}
           >
-            Our Core Values
+            {t('values.heading')}
           </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            The principles that guide every partnership and venture we build
+            {t('values.subheading')}
           </p>
         </motion.div>
 
@@ -51,7 +38,7 @@ export function Values() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {values.map((value, index) => (
             <motion.div
-              key={value.title}
+              key={value.key}
               className="text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -72,12 +59,12 @@ export function Values() {
 
               {/* Title */}
               <h3 className="mb-3 text-white" style={{ fontSize: '1.25rem', fontWeight: 600 }}>
-                {value.title}
+                {t(`values.items.${value.key}.title`)}
               </h3>
 
               {/* Description */}
               <p className="text-gray-400 text-sm leading-relaxed">
-                {value.description}
+                {t(`values.items.${value.key}.description`)}
               </p>
             </motion.div>
           ))}

@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Languages } from 'lucide-react';
-import logo from 'figma:asset/3b116380632049ae9483c80ba65c02f33bf5b032.png';
+import { useTranslation } from 'react-i18next';
+import logo from '@/assets/3b116380632049ae9483c80ba65c02f33bf5b032.png';
 
 export function Navigation() {
+  const { t, i18n } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('English');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,9 +21,9 @@ export function Navigation() {
   }, []);
 
   const navItems = [
-    { label: 'Home', path: '/' },
-    { label: 'What We Do', path: '/what-we-do' },
-    { label: 'About', path: '/about' },
+    { label: t('nav.home'), path: '/' },
+    { label: t('nav.whatWeDo'), path: '/what-we-do' },
+    { label: t('nav.about'), path: '/about' },
   ];
 
   return (
@@ -79,7 +80,7 @@ export function Navigation() {
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/contact')}
             >
-              Contact Us
+              {t('nav.contactUs')}
             </motion.button>
 
             {/* Language Selector */}
@@ -106,7 +107,7 @@ export function Navigation() {
                     <button
                       className="block w-full text-left px-4 py-3 text-sm text-gray-300 hover:text-white hover:bg-[#39FF14]/10 transition-colors"
                       onClick={() => {
-                        setSelectedLanguage('English');
+                        void i18n.changeLanguage('en');
                         setLanguageMenuOpen(false);
                       }}
                     >
@@ -115,7 +116,7 @@ export function Navigation() {
                     <button
                       className="block w-full text-left px-4 py-3 text-sm text-gray-300 hover:text-white hover:bg-[#39FF14]/10 transition-colors"
                       onClick={() => {
-                        setSelectedLanguage('Français');
+                        void i18n.changeLanguage('fr');
                         setLanguageMenuOpen(false);
                       }}
                     >
@@ -124,7 +125,7 @@ export function Navigation() {
                     <button
                       className="block w-full text-left px-4 py-3 text-sm text-gray-300 hover:text-white hover:bg-[#39FF14]/10 transition-colors"
                       onClick={() => {
-                        setSelectedLanguage('العربية');
+                        void i18n.changeLanguage('ar');
                         setLanguageMenuOpen(false);
                       }}
                     >

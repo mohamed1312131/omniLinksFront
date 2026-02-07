@@ -1,9 +1,11 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import inspirationBg from 'figma:asset/90766bab80d9fe5c1f9a7ddddddc6f238a2c9326.png';
+import { useTranslation } from 'react-i18next';
+import inspirationBg from '@/assets/90766bab80d9fe5c1f9a7ddddddc6f238a2c9326.png';
 
 export function Hero() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
@@ -30,9 +32,9 @@ export function Hero() {
             className="mb-6 bg-gradient-to-r from-[#39FF14] via-white to-[#1E9BFF] bg-clip-text text-transparent"
             style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', lineHeight: 1.1, fontWeight: 700 }}
           >
-            Building Digital
+            {t('hero.titleLine1')}
             <br />
-            Products That Last
+            {t('hero.titleLine2')}
           </h1>
 
           <p
@@ -42,9 +44,7 @@ export function Hero() {
             // animate={{ opacity: 1 }}
             // transition={{ duration: 0.8, delay: 0.4 }}
           >
-            We design and build digital products by connecting strategy, design, and technology 
-            into scalable, long-term solutions. From concept to launch, we help businesses and 
-            founders transform ideas into performant digital products — not just good-looking ones.
+            {t('hero.description')}
           </p>
 
           <div
@@ -60,7 +60,7 @@ export function Hero() {
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/what-we-do')}
             >
-              Explore What We Do
+              {t('hero.explore')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </motion.button>
 
@@ -70,7 +70,7 @@ export function Hero() {
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/contact')}
             >
-              Start a Conversation
+              {t('hero.startConversation')}
             </motion.button>
           </div>
         </div>
