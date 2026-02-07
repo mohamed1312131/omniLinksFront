@@ -48,7 +48,7 @@ export function Navigation() {
               transition={{ duration: 0.2 }}
             >
               <img src={logo} alt="OmniLinks" className="h-10 md:h-14 w-auto" />
-              <span className="text-2xl tracking-tight font-bold">OmniLinks</span>
+              <span className="text-2xl tracking-tight font-bold">Omni Links</span>
             </motion.div>
           </Link>
 
