@@ -74,23 +74,6 @@ export function Hero() {
             </motion.button>
           </div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-          // CACHED ANIMATIONS:
-          // initial={{ opacity: 0 }}
-          // animate={{ opacity: 1 }}
-          // transition={{ duration: 1, delay: 1 }}
-        >
-          <motion.div
-            className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            <motion.div className="w-1.5 h-1.5 rounded-full bg-white/60" />
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );

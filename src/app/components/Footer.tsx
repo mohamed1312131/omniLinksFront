@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { Mail, Linkedin, Facebook, Instagram, MapPin, Phone, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import logo from '@/assets/3b116380632049ae9483c80ba65c02f33bf5b032.png';
+import logo from '@/assets/Gemini_Generated_Image_8fik28fik28fik28-removebg-preview.png';
 
 export function Footer() {
   const { t } = useTranslation();
@@ -27,7 +27,6 @@ export function Footer() {
           >
             <div className="flex items-center gap-3 mb-4">
               <img src={logo} alt="OmniLinks" className="h-10 w-auto" />
-              <span className="text-xl text-white font-bold">OmniLinks</span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
               {t('footer.tagline')}

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Languages, Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import logo from '@/assets/3b116380632049ae9483c80ba65c02f33bf5b032.png';
+import logo from '@/assets/Gemini_Generated_Image_8fik28fik28fik28-removebg-preview.png';
 
 export function Navigation() {
   const { t, i18n } = useTranslation();
@@ -43,12 +43,11 @@ export function Navigation() {
           {/* Logo */}
           <Link to="/">
             <motion.div
-              className="flex items-center gap-3"
+              className="flex items-center"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
-              <img src={logo} alt="OmniLinks" className="h-10 md:h-14 w-auto" />
-              <span className="text-2xl tracking-tight font-bold">Omni Links</span>
+              <img src={logo} alt="OmniLinks" className="h-12 md:h-16 w-auto" />
             </motion.div>
           </Link>
 
