@@ -1,5 +1,16 @@
 const TOKEN_STORAGE_KEY = 'omnilinks_admin_token';
 
+function buildApiUrl(input: string): string {
+  if (/^https?:\/\//i.test(input)) return input;
+
+  const base = (import.meta as any).env?.VITE_API_BASE_URL as string | undefined;
+  if (!base) return input;
+
+  const normalizedBase = base.replace(/\/+$/, '');
+  const normalizedPath = input.startsWith('/') ? input : `/${input}`;
+  return `${normalizedBase}${normalizedPath}`;
+}
+
 export function getAdminToken(): string | null {
   return localStorage.getItem(TOKEN_STORAGE_KEY);
 }
@@ -18,6 +29,8 @@ export async function apiRequest<T>(
 ): Promise<T> {
   const token = getAdminToken();
 
+  const url = buildApiUrl(input);
+
   const headers = new Headers(init.headers);
   if (!headers.has('Content-Type') && init.body) {
     headers.set('Content-Type', 'application/json');
@@ -26,7 +39,7 @@ export async function apiRequest<T>(
     headers.set('Authorization', `Bearer ${token}`);
   }
 
-  const response = await fetch(input, {
+  const response = await fetch(url, {
     ...init,
     headers,
   });

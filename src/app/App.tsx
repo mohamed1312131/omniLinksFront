@@ -13,6 +13,7 @@ import { Contact } from '@/app/pages/Contact';
 import { AdminDashboard } from '@/app/pages/AdminDashboard';
 import { AdminLogin } from '@/app/pages/AdminLogin';
 import { ProtectedRoute } from '@/app/components/ProtectedRoute';
+import { apiRequest } from '@/app/utils/auth';
 
 export default function App() {
   const { i18n } = useTranslation();
@@ -28,7 +29,7 @@ export default function App() {
     if (sessionStorage.getItem(key)) return;
 
     sessionStorage.setItem(key, '1');
-    fetch('/api/analytics/track').catch(() => {
+    apiRequest('/api/analytics/track').catch(() => {
       sessionStorage.removeItem(key);
     });
   }, []);
