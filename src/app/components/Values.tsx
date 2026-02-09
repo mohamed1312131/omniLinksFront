@@ -12,7 +12,7 @@ const values = [
 
 export function Values() {
   const { t } = useTranslation();
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <section id="what-we-do" className="relative py-24 px-6 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent">
@@ -47,10 +47,10 @@ export function Values() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -8 }}
-              onMouseEnter={() => setExpandedIndex(index)}
-              onMouseLeave={() => setExpandedIndex((current) => (current === index ? null : current))}
-              onClick={() =>
-                setExpandedIndex((current) => {
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              onTouchStart={() =>
+                setHoveredIndex((current) => {
                   if (current === index) return null;
                   return index;
                 })
@@ -78,22 +78,18 @@ export function Values() {
 
                 {/* Description */}
                 <motion.div
-                  className="text-gray-400 text-sm leading-relaxed"
-                  initial={false}
-                  animate={expandedIndex === index ? 'open' : 'collapsed'}
-                  variants={{
-                    collapsed: { maxHeight: 56, opacity: 0.85 },
-                    open: { maxHeight: 260, opacity: 1 },
+                  className="overflow-hidden"
+                  animate={{
+                    height: hoveredIndex === index ? 'auto' : 0,
+                    opacity: hoveredIndex === index ? 1 : 0,
+                    marginTop: hoveredIndex === index ? 16 : 0,
                   }}
-                  transition={{ duration: 0.25 }}
-                  style={{ overflow: 'hidden' }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
                 >
-                  {t(`values.items.${value.key}.description`)}
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {t(`values.items.${value.key}.description`)}
+                  </p>
                 </motion.div>
-
-                <div className="mt-3 text-xs text-white/40 select-none">
-                  {expandedIndex === index ? t('common.tapToCollapse') : t('common.tapToReadMore')}
-                </div>
               </div>
             </motion.div>
           ))}
